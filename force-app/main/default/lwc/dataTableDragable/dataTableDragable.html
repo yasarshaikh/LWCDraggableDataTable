@@ -1,0 +1,57 @@
+<!--
+  @description       : 
+  @author            : Yasar Shaikh
+  @group             : 
+  @last modified on  : 11-19-2020
+  @last modified by  : Yasar Shaikh
+  Modifications Log 
+  Ver   Date         Author         Modification
+  1.0   11-12-2020   Yasar Shaikh   Initial Version
+-->
+<template>
+  <table
+    class="table-dragable slds-table slds-table_cell-buffer slds-table_bordered"
+    aria-describedby="User Details"
+  >
+    <thead>
+      <tr>
+        <th scope="col">Index</th>
+        <th scope="col">Salesforce ID</th>
+        <th scope="col">User Name</th>
+        <th scope="col">Email ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <template if:true={users.data}>
+        <template for:each={users.data} for:item="user" for:index="index">
+          <tr
+            class="grabable"
+            key={user.Id}
+            id={user.Id}
+            draggable="true"
+            data-drag-id={index}
+            ondragstart={onDragStart}
+            ondragover={onDragOver}
+            ondrop={onDrop}
+          >
+            <th scope="col" class="myIndex">{index}</th>
+            <th scope="col" class="myId">{user.Id}</th>
+            <th scope="col">{user.Username}</th>
+            <th scope="col">{user.Email}</th>
+          </tr>
+        </template>
+      </template>
+      <template if:true={users.error}> No rows found. </template>
+    </tbody>
+  </table>
+
+  <div>
+    <lightning-button
+      variant="brand"
+      label="Submit"
+      title="Submit"
+      onclick={handleSubmit}
+      class="slds-m-around_x-large"
+    ></lightning-button>
+  </div>
+</template>
