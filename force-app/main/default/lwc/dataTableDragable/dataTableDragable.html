@@ -2,12 +2,13 @@
   @description       : 
   @author            : Yasar Shaikh
   @group             : 
-  @last modified on  : 11-19-2020
+  @last modified on  : 12-14-2020
   @last modified by  : Yasar Shaikh
   Modifications Log 
   Ver   Date         Author         Modification
-  1.0   11-12-2020   Yasar Shaikh   Initial Version
+  1.0   12-14-2020   Yasar Shaikh   Initial Version
 -->
+
 <template>
   <table
     class="table-dragable slds-table slds-table_cell-buffer slds-table_bordered"
@@ -15,6 +16,7 @@
   >
     <thead>
       <tr>
+        <th scope="col"> &nbsp; </th>
         <th scope="col">Index</th>
         <th scope="col">Salesforce ID</th>
         <th scope="col">User Name</th>
@@ -34,6 +36,9 @@
             ondragover={onDragOver}
             ondrop={onDrop}
           >
+            <th scope="col" >
+              <input class="mychkbox" type="checkbox"></input>
+            </th>
             <th scope="col" class="myIndex">{index}</th>
             <th scope="col" class="myId">{user.Id}</th>
             <th scope="col">{user.Username}</th>
@@ -41,7 +46,7 @@
           </tr>
         </template>
       </template>
-      <template if:true={users.error}> No rows found. </template>
+      <template if:true={users.error}>No rows found.</template>
     </tbody>
   </table>
 
